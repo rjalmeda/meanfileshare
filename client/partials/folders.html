@@ -1,0 +1,57 @@
+<style>
+    div.container {
+        position: relative;
+    }
+    div.sideBar {
+        width: 120px;
+    }
+    div.main {
+        width: 500px;
+        vertical-align: top;
+    }
+/*
+    div.mainFolder{
+        display: inline-block;
+        border: 2px solid red;
+    }
+*/
+</style>
+<div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#/dashboard">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="#/dashboard">Home</a></li>
+          <li class="active"><a href="#/folders">Folders</a></li>
+          <li><a href="#/friends">Friends</a></li>
+          <li><a href="#/users">User Search</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="sideBar">
+        <ul>
+            <li ng-repeat="folder in folders">
+                <a ng-click="getFolder(folder)">{{folder.folderName}}</a> - {{folder._id}}
+            </li>
+        </ul>
+        <form ng-submit="addFolder()">
+            <input type="folderName" ng-model="folderName"><br>
+            <button type="submit">Add Folder</button>
+        </form><br>
+        <button ng-click="getFolders()">Refresh Folders</button>
+    </div>
+    <div class="main">
+        <div class="mainFolder" ng-if="onFolder()">
+            <h2>{{folder.folderName}}</h2>
+            <div class="inputFile">
+                <form ng-submit="uploadFile()">
+                    <p>File <input type="file" onchange="angular.element(this).scope().setFile(this.files)"></p>
+                    <button type="reset">Reset</button>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

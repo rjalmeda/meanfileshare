@@ -1,0 +1,36 @@
+<div class="register">
+    <h3>Registration</h3>
+    <form ng-submit="registerUser(ruser)">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" ng-model="ruser.username"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" ng-model="ruser.password"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Register</button>
+    </form>
+</div>
+<div class="login">
+    <h3>Login</h3>
+    <form ng-submit="loginUser(luser)">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" ng-model="luser.username"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" ng-model="luser.password"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Login</button>
+    </form>
+</div>
