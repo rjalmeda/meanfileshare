@@ -21,7 +21,16 @@ module.exports = function(app){
     app.get('/getFolder/:folderid', function(req,res){
         folderController.getFolder(req,res);
     });
-    app.post('/uploadFile', upload.single('file'), function(req,res){
+    app.post('/uploadFile/:fileType', upload.single('file'), function(req,res){
         folderController.uploadFile(req,res);
-    })
+    });
+    app.get('/refreshFolder', function(req,res){
+        folderController.refreshFolder(req,res);
+    });
+    app.get('/getFile/:filename', function(req,res){
+        folderController.getFile(req,res);
+    });
+    app.get('/getFile', function(req,res){
+        userController.getFile(req,res);
+    });
 }

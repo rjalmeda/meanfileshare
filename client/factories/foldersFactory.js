@@ -18,15 +18,22 @@ app.factory('foldersFactory', function($http){
         });
     };
     
-    factory.uploadFile = function(file, callback){
+    factory.uploadFile = function(file, fileType, callback){
         var fd = new FormData();
         fd.append('file', file);
-        $http.post('/uploadFile', fd, {
+        $http.post('/uploadFile/'+fileType, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         }).then(function(data){
             callback(data);
         });
-    }
+    };
+    
+    factory.refreshFolder = function(callback){
+        $http.get('/refreshFolder').then(function(data){
+            callback(data);
+        })
+    };
+    
     return factory;
 })

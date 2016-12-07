@@ -9,6 +9,15 @@
         width: 500px;
         vertical-align: top;
     }
+    div.itemDiv {
+        border: 2px solid black;
+        border-radius: 5px;
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+    }
 /*
     div.mainFolder{
         display: inline-block;
@@ -45,9 +54,27 @@
     <div class="main">
         <div class="mainFolder" ng-if="onFolder()">
             <h2>{{folder.folderName}}</h2>
+            <div class="itemDiv" ng-repeat="item in folder.fk_items">{{item.fk_file.filename}}<br>
+                <div ng-if="item.type === 'picture'">
+                    <img src="/getFile/{{item.fk_file.filename}}" height="75">
+                </div>
+
+                <div ng-if="item.type === 'video'">
+                    <video width="320" height="240" controls>
+                      <source src="/getFile/{{item.fk_file.filename}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div ng-if="item.type === 'sound'">
+                    <audio controls>
+                        <source src="/getFile/{{item.fk_file.filename}}" type="audio/mp3">
+                    </audio>
+                </div>
+            </div>
             <div class="inputFile">
                 <form ng-submit="uploadFile()">
-                    <p>File <input type="file" onchange="angular.element(this).scope().setFile(this.files)"></p>
+                    <p>File <input type="file" onchange="angular.element(this).scope().setFile(this.files)"></p><br>
                     <button type="reset">Reset</button>
                     <button type="submit">Submit</button>
                 </form>
